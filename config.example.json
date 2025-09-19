@@ -1,0 +1,5 @@
+{
+  "app_id": "your_feishu_app_id_here",
+  "app_secret": "your_feishu_app_secret_here",
+  "log_level": "INFO"
+}

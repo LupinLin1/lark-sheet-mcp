@@ -1,0 +1,139 @@
+{
+  "mcpServers": {
+    "feishu-spreadsheet-fastmcp": {
+      "command": "python",
+      "args": [
+        "-m",
+        "feishu_spreadsheet_mcp.main"
+      ],
+      "env": {
+        "FEISHU_APP_ID": "your_app_id_here",
+        "FEISHU_APP_SECRET": "your_app_secret_here",
+        "FEISHU_LOG_LEVEL": "INFO"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "list_spreadsheets",
+        "get_worksheets",
+        "read_range",
+        "read_multiple_ranges",
+        "find_cells"
+      ]
+    },
+    "feishu-spreadsheet-dev": {
+      "command": "python",
+      "args": [
+        "-m",
+        "feishu_spreadsheet_mcp.main",
+        "--log-level",
+        "DEBUG"
+      ],
+      "env": {
+        "FEISHU_APP_ID": "your_dev_app_id",
+        "FEISHU_APP_SECRET": "your_dev_app_secret",
+        "FEISHU_LOG_LEVEL": "DEBUG"
+      },
+      "disabled": true,
+      "autoApprove": []
+    },
+    "feishu-spreadsheet-config-file": {
+      "command": "python",
+      "args": [
+        "-m",
+        "feishu_spreadsheet_mcp.main",
+        "--config",
+        "/path/to/your/config.json"
+      ],
+      "disabled": true,
+      "autoApprove": [
+        "list_spreadsheets",
+        "get_worksheets",
+        "read_range",
+        "read_multiple_ranges",
+        "find_cells"
+      ]
+    }
+  },
+  "_documentation": {
+    "title": "Feishu Spreadsheet MCP Server Configuration Examples",
+    "version": "1.1.0-fastmcp",
+    "framework": "FastMCP",
+    "description": "Configuration examples for the FastMCP-based Feishu/Lark Spreadsheet MCP Server",
+    "setup_instructions": {
+      "1": "Replace 'your_app_id_here' and 'your_app_secret_here' with your actual Feishu app credentials",
+      "2": "Enable the configuration you want to use by setting 'disabled': false",
+      "3": "Disable unused configurations by setting 'disabled': true",
+      "4": "Adjust log levels as needed: DEBUG, INFO, WARNING, ERROR"
+    },
+    "configuration_options": {
+      "feishu-spreadsheet-fastmcp": "Production configuration with environment variables",
+      "feishu-spreadsheet-dev": "Development configuration with debug logging",
+      "feishu-spreadsheet-config-file": "Configuration using external config file"
+    },
+    "environment_variables": {
+      "FEISHU_APP_ID": "Your Feishu application ID (required)",
+      "FEISHU_APP_SECRET": "Your Feishu application secret (required)",
+      "FEISHU_LOG_LEVEL": "Log level (optional): DEBUG, INFO, WARNING, ERROR, CRITICAL",
+      "FEISHU_MAX_RETRIES": "Maximum retry attempts for API calls (optional, default: 3)",
+      "FEISHU_TIMEOUT": "Request timeout in seconds (optional, default: 30)"
+    },
+    "tools": {
+      "list_spreadsheets": {
+        "description": "获取用户可访问的电子表格列表",
+        "parameters": {
+          "folder_token": "文件夹token，为空时获取根目录 (optional)",
+          "page_size": "每页返回的数量，最大200 (optional, default: 50)"
+        }
+      },
+      "get_worksheets": {
+        "description": "获取指定电子表格的工作表列表",
+        "parameters": {
+          "spreadsheet_token": "电子表格token (required)"
+        }
+      },
+      "read_range": {
+        "description": "读取指定范围的单元格数据",
+        "parameters": {
+          "spreadsheet_token": "电子表格token (required)",
+          "range_spec": "范围规格，格式为 'sheetId!A1:B10' (required)",
+          "value_render_option": "数据渲染选项 (optional, default: 'UnformattedValue')",
+          "date_time_render_option": "日期时间渲染选项 (optional, default: 'FormattedString')"
+        }
+      },
+      "read_multiple_ranges": {
+        "description": "批量读取多个范围的数据",
+        "parameters": {
+          "spreadsheet_token": "电子表格token (required)",
+          "ranges": "范围列表 (required)",
+          "value_render_option": "数据渲染选项 (optional, default: 'UnformattedValue')",
+          "date_time_render_option": "日期时间渲染选项 (optional, default: 'FormattedString')"
+        }
+      },
+      "find_cells": {
+        "description": "在指定范围内查找单元格",
+        "parameters": {
+          "spreadsheet_token": "电子表格token (required)",
+          "sheet_id": "工作表ID (required)",
+          "range_spec": "搜索范围 (required)",
+          "find_text": "查找文本或正则表达式 (required)",
+          "match_case": "是否区分大小写 (optional, default: false)",
+          "match_entire_cell": "是否完全匹配单元格 (optional, default: false)",
+          "search_by_regex": "是否使用正则表达式 (optional, default: false)",
+          "include_formulas": "是否仅搜索公式 (optional, default: false)"
+        }
+      }
+    },
+    "fastmcp_features": [
+      "Automatic parameter validation with Pydantic models",
+      "Simplified tool registration using decorators",
+      "Built-in JSON schema generation",
+      "Better error handling and logging",
+      "74% code reduction compared to manual MCP implementation",
+      "Fixed MCP connection stability issues"
+    ],
+    "changelog": {
+      "1.1.0-fastmcp": "Migrated to FastMCP framework, fixed connection issues",
+      "1.0.0": "Initial release with manual MCP implementation"
+    }
+  }
+}

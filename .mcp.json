@@ -1,0 +1,47 @@
+{
+  "mcpServers": {
+    "lark_open_doc_search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@larksuiteoapi/lark-mcp",
+        "recall-developer-documents"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "openplatform_developer_document_recall"
+      ]
+    },
+    "fetch": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-fetch"
+      ],
+      "env": {},
+      "disabled": false,
+      "autoApprove": [
+        "fetch"
+      ]
+    },
+    "feishu-spreadsheet-fastmcp": {
+      "command": "python",
+      "args": [
+        "-m",
+        "feishu_spreadsheet_mcp.main"
+      ],
+      "env": {
+        "FEISHU_APP_ID": "cli_a80a58f563f8500c",
+        "FEISHU_APP_SECRET": "59cn2FCWvmKZ6Y7hGyDnKeJ0xeZgU0Yh",
+        "FEISHU_LOG_LEVEL": "INFO"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "list_spreadsheets",
+        "get_worksheets", 
+        "read_range",
+        "read_multiple_ranges",
+        "find_cells"
+      ]
+    }
+  }
+}

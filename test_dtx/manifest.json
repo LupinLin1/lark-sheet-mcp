@@ -1,0 +1,94 @@
+{
+  "dxt_version": "0.1",
+  "name": "feishu-spreadsheet-mcp",
+  "display_name": "Feishu Spreadsheet MCP Server",
+  "version": "1.1.0-fastmcp-simple",
+  "description": "Access Feishu/Lark spreadsheet data through FastMCP",
+  "long_description": "A FastMCP-based server for accessing Feishu/Lark spreadsheet data. Built with modern FastMCP framework for improved performance and developer experience. Provides tools for listing spreadsheets, reading worksheets, searching cells, and batch operations on spreadsheet data.",
+  "author": {
+    "name": "MCP Development Team",
+    "email": "dev@example.com"
+  },
+  "homepage": "https://github.com/example/feishu-spreadsheet-mcp",
+  "documentation": "https://github.com/example/feishu-spreadsheet-mcp#readme",
+  "support": "https://github.com/example/feishu-spreadsheet-mcp/issues",
+  "keywords": [
+    "feishu",
+    "lark",
+    "spreadsheet",
+    "mcp",
+    "api",
+    "fastmcp"
+  ],
+  "license": "MIT",
+  "server": {
+    "type": "python",
+    "entry_point": "feishu_spreadsheet_mcp/main.py",
+    "framework": "fastmcp",
+    "mcp_config": {
+      "command": "python",
+      "args": [
+        "${__dirname}/startup.py"
+      ],
+      "env": {
+        "FEISHU_APP_ID": "${user_config.app_id}",
+        "FEISHU_APP_SECRET": "${user_config.app_secret}"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "list_spreadsheets",
+      "description": "Get accessible spreadsheets from user's account"
+    },
+    {
+      "name": "get_worksheets",
+      "description": "Retrieve worksheets for a specific spreadsheet"
+    },
+    {
+      "name": "read_range",
+      "description": "Read single cell range data"
+    },
+    {
+      "name": "read_multiple_ranges",
+      "description": "Batch read multiple cell ranges"
+    },
+    {
+      "name": "find_cells",
+      "description": "Search cells with regex support"
+    }
+  ],
+  "compatibility": {
+    "claude_desktop": ">=1.0.0",
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "python": ">=3.8"
+    }
+  },
+  "user_config": {
+    "app_id": {
+      "type": "string",
+      "title": "Feishu App ID",
+      "description": "Your Feishu application ID for API access",
+      "required": true,
+      "sensitive": false
+    },
+    "app_secret": {
+      "type": "string",
+      "title": "Feishu App Secret",
+      "description": "Your Feishu application secret for API authentication",
+      "required": true,
+      "sensitive": true
+    }
+  },
+  "dtx_info": {
+    "type": "simple",
+    "framework": "fastmcp",
+    "requires_external_deps": true,
+    "note": "Requires fastmcp to be installed on target system"
+  }
+}
