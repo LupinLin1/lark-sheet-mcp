@@ -21,30 +21,59 @@ This MCP server provides AI assistants with the ability to read and query Feishu
 - Python 3.8 or higher
 - Feishu Open Platform app credentials (app_id and app_secret)
 
-### Install Dependencies
+### Install from PyPI (Recommended)
 
 ```bash
-pip install -r requirements.txt
+pip install lark-sheet-mcp
+```
+
+### Install from GitHub
+
+```bash
+pip install git+https://github.com/LupinLin1/lark-sheet-mcp.git
 ```
 
 ### Development Setup
 
 ```bash
-# Install development dependencies
-pip install -r requirements.txt
+# Clone the repository
+git clone https://github.com/LupinLin1/lark-sheet-mcp.git
+cd lark-sheet-mcp
 
-# Install package in development mode
+# Install in development mode
 pip install -e .
+
+# Install development dependencies
+pip install -e ".[dev]"
 ```
 
 ## Configuration
 
-Set the following environment variables:
+### MCP Client Configuration
+
+After installation, you can use lark-sheet-mcp as an MCP server in your MCP client configuration:
+
+```json
+{
+  "mcpServers": {
+    "lark-sheet-mcp": {
+      "command": "lark-sheet-mcp",
+      "args": ["--app-id", "your_app_id", "--app-secret", "your_app_secret"]
+    }
+  }
+}
+```
+
+### Environment Variables
+
+Alternatively, set the following environment variables:
 
 ```bash
 export FEISHU_APP_ID="your_app_id"
 export FEISHU_APP_SECRET="your_app_secret"
 ```
+
+### Command Line Arguments
 
 Or pass them as command line arguments:
 
