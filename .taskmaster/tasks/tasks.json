@@ -1,0 +1,164 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Audit and Refactor CLI Entry Point",
+        "description": "Fix the CLI entry point so that `lark-sheet-mcp --help` works and supports required arguments.",
+        "details": "Review the current CLI implementation. Use the latest version of `argparse` or `typer` (recommended for modern Python CLI apps, e.g., typer>=0.12.0) to define the CLI interface. Ensure the entry point is correctly specified in pyproject.toml or setup.cfg using the `[project.scripts]` or `entry_points` field. Add support for `--app-id` and `--app-secret` arguments. Test CLI on Python 3.8+ and across platforms (Windows, macOS, Linux).",
+        "testStrategy": "Run `lark-sheet-mcp --help` and verify output. Test CLI with and without arguments. Use automated tests (pytest) to invoke CLI via subprocess and check exit codes and output.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Review Current CLI Implementation",
+            "description": "Analyze the existing CLI entry point code and configuration to identify current issues and limitations, especially regarding argument parsing and help message generation.",
+            "dependencies": [],
+            "details": "Inspect the CLI source code and entry point definition in pyproject.toml or setup.cfg. Document any problems with argument handling, help output, or entry point registration.",
+            "status": "pending",
+            "testStrategy": "Run the current CLI with `lark-sheet-mcp --help` and various argument combinations. Note any errors or missing features."
+          },
+          {
+            "id": 2,
+            "title": "Refactor CLI Using Typer",
+            "description": "Refactor the CLI implementation to use the latest version of Typer (>=0.12.0) for modern, type-annotated argument parsing and improved help output.",
+            "dependencies": [
+              "1.1"
+            ],
+            "details": "Replace existing argument parsing logic with Typer, ensuring all commands and options are defined using type hints and decorators. Implement `--app-id` and `--app-secret` as required arguments.",
+            "status": "pending",
+            "testStrategy": "Run `lark-sheet-mcp --help` and verify that the help message is clear and includes all required arguments. Test CLI invocation with and without required arguments."
+          },
+          {
+            "id": 3,
+            "title": "Update Entry Point Configuration",
+            "description": "Ensure the CLI entry point is correctly specified in pyproject.toml or setup.cfg using the `[project.scripts]` or `entry_points` field.",
+            "dependencies": [],
+            "details": "Edit the relevant configuration file to register the CLI script under the correct name. Confirm that the entry point launches the Typer-based CLI.",
+            "status": "pending",
+            "testStrategy": "Install the package locally and verify that `lark-sheet-mcp` is available as a command. Run `lark-sheet-mcp --help` to confirm correct wiring."
+          },
+          {
+            "id": 4,
+            "title": "Add and Validate Required Arguments",
+            "description": "Implement support for `--app-id` and `--app-secret` as required CLI arguments, ensuring proper validation and error messages.",
+            "dependencies": [],
+            "details": "Define `--app-id` and `--app-secret` as required options in the Typer CLI. Add validation logic if necessary to check for missing or invalid values.",
+            "status": "pending",
+            "testStrategy": "Invoke the CLI without these arguments and confirm that informative error messages are shown. Test with valid and invalid values."
+          },
+          {
+            "id": 5,
+            "title": "Cross-Platform and Version Testing",
+            "description": "Test the refactored CLI on Python 3.8+ and across Windows, macOS, and Linux to ensure consistent behavior and compatibility.",
+            "dependencies": [],
+            "details": "Set up test environments for each supported OS and Python version. Use automated tests (e.g., pytest with subprocess) to invoke the CLI and check outputs and exit codes.",
+            "status": "pending",
+            "testStrategy": "Run the CLI and automated tests on all target platforms and Python versions. Verify help output, argument parsing, and error handling are consistent and correct."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Update Packaging Configuration",
+        "description": "Ensure all necessary files and dependencies are included for PyPI packaging.",
+        "details": "Adopt a modern packaging tool such as Hatch (hatch>=1.9.0) or Poetry (poetry>=1.7.0) for best practices. Update pyproject.toml with project metadata, dependencies, and entry points. Use `include`/`exclude` fields to ensure all required files (e.g., README.md, LICENSE, mcp.json example, core modules) are packaged. Pin dependencies for reproducibility. Validate with `hatch build` or `poetry build`.",
+        "testStrategy": "Build the package locally and inspect the generated wheel and sdist. Use `pip install .` in a fresh virtual environment to verify installation. Check that all files are present and importable.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 3,
+        "title": "Implement and Validate MCP JSON Configuration Support",
+        "description": "Enable and document support for MCP configuration via mcp.json as specified.",
+        "details": "Implement logic to parse and use mcp.json for server configuration. Validate that the CLI can be invoked with the configuration provided in the PRD. Ensure the command and arguments can be set via JSON. Use Python's built-in `json` module for parsing, and validate schema with `pydantic` (pydantic>=2.0) for robustness.",
+        "testStrategy": "Provide sample mcp.json files and test CLI invocation using these configurations. Write unit tests for config parsing and error handling.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Cross-Platform Compatibility and Python 3.8+ Support",
+        "description": "Ensure the package works on Windows, macOS, and Linux with Python 3.8 and above.",
+        "details": "Test the package in CI pipelines (e.g., GitHub Actions) across all major OSes and Python versions 3.8, 3.9, 3.10, 3.11, 3.12. Address any OS-specific path or encoding issues. Use tox>=4.0 for local multi-environment testing.",
+        "testStrategy": "Configure CI to run tests on all supported platforms and Python versions. Manually test on at least one machine per OS if possible.",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          3
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Prepare for PyPI Publishing",
+        "description": "Set up PyPI account, configure credentials, and prepare the package for upload.",
+        "details": "Register a PyPI account if not already done. Use `twine>=5.0` for secure uploading. Store credentials securely (preferably in environment variables or CI secrets). Ensure all metadata (author, license, classifiers) is complete and accurate in pyproject.toml.",
+        "testStrategy": "Perform a test upload to TestPyPI (`test.pypi.org`). Verify the package appears and can be installed from TestPyPI.",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          4
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Publish Package to PyPI",
+        "description": "Build and upload the package to the official PyPI repository.",
+        "details": "Use `hatch build` or `poetry build` to generate distribution files. Upload to PyPI with `twine upload dist/*`. Confirm the package is listed and downloadable. Tag the release in version control (git).",
+        "testStrategy": "Install the package from PyPI in a clean environment (`pip install lark-sheet-mcp`). Verify CLI and core functionality.",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Update and Polish Documentation",
+        "description": "Revise README and add usage, installation, and configuration instructions.",
+        "details": "Update README.md with installation steps (`pip install lark-sheet-mcp`), CLI usage, and mcp.json configuration examples. Add a section on MCP protocol support and cross-platform notes. Include a changelog and contribution guidelines if not present.",
+        "testStrategy": "Review documentation for clarity and completeness. Ask a team member to follow the instructions from scratch and provide feedback.",
+        "priority": "medium",
+        "dependencies": [
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      },
+      {
+        "id": 8,
+        "title": "Automated Testing and Release Validation",
+        "description": "Implement and run automated tests to ensure package quality and MCP compliance.",
+        "details": "Write unit and integration tests using pytest>=8.0. Cover CLI, config parsing, and MCP protocol logic. Integrate tests into CI/CD (e.g., GitHub Actions). Use `pip-audit` to scan for vulnerabilities. Ensure 90%+ code coverage.",
+        "testStrategy": "Run all tests in CI on every push and before release. Review coverage reports and address any failures or regressions.",
+        "priority": "medium",
+        "dependencies": [
+          4,
+          6
+        ],
+        "status": "pending",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-09-20T04:21:21.319Z",
+      "updated": "2025-09-20T04:21:21.319Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

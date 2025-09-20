@@ -56,7 +56,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "lark-sheet-mcp=main:main",
+            "lark-sheet-mcp=lark_sheet_mcp.main:main",
         ],
     },
     keywords="feishu lark spreadsheet mcp model-context-protocol api",

@@ -48,7 +48,7 @@ dev = [
 ]
 
 [project.scripts]
-lark-sheet-mcp = "main:main"
+lark-sheet-mcp = "lark_sheet_mcp.main:main"
 
 [project.urls]
 Homepage = "https://github.com/lupin/lark-sheet-mcp"

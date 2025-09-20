@@ -1,8 +1,8 @@
 """
-Feishu Spreadsheet MCP Server
+Lark Sheet MCP
 
 A Model Context Protocol server for accessing Feishu/Lark spreadsheet data.
 """
 
-__version__ = "0.1.0"
-__author__ = "Feishu MCP Team"
+__version__ = "1.0.0"
+__author__ = "Lupin"

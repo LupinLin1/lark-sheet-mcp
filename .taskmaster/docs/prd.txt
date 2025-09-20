@@ -1,0 +1,59 @@
+# Lark Sheet MCP 包发布 PRD
+
+## 项目概述
+将 lark-sheet-mcp 项目打包并发布到 PyPI，使其他人能够通过简单的 mcp.json 配置自动安装和使用。
+
+## 目标
+- 修复当前的入口点问题
+- 完善打包配置
+- 发布到 PyPI
+- 提供简单的 MCP 配置方式
+
+## 功能需求
+
+### 1. 修复入口点问题
+- 解决 `lark-sheet-mcp --help` 命令无法执行的问题
+- 确保命令行工具可以正常启动 MCP 服务器
+- 支持 `--app-id` 和 `--app-secret` 参数
+
+### 2. 完善打包配置
+- 确保所有必要文件包含在包中
+- 验证依赖项配置正确
+- 测试本地安装和卸载
+
+### 3. PyPI 发布准备
+- 创建 PyPI 账户（如需要）
+- 配置发布凭据
+- 构建发布包
+- 上传到 PyPI
+
+### 4. 简化 MCP 配置
+- 确保用户可以通过以下方式配置：
+```json
+{
+  "mcpServers": {
+    "lark-sheet-mcp": {
+      "command": "lark-sheet-mcp",
+      "args": ["--app-id", "your_app_id", "--app-secret", "your_app_secret"]
+    }
+  }
+}
+```
+
+### 5. 文档更新
+- 更新 README 中的安装说明
+- 提供 MCP 配置示例
+- 添加发布后的使用指南
+
+## 技术要求
+- Python 3.8+ 兼容性
+- 正确的包依赖管理
+- 跨平台兼容性
+- 标准的 MCP 协议支持
+
+## 验收标准
+- ✅ 命令行工具 `lark-sheet-mcp --help` 正常工作
+- ✅ 可以通过 `pip install lark-sheet-mcp` 安装
+- ✅ MCP 配置中可以直接使用命令名
+- ✅ 包在 PyPI 上可搜索和下载
+- ✅ 文档清晰说明安装和配置步骤
