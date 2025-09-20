@@ -11,7 +11,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="lark-sheet-mcp",
-    version="1.0.0",
+    version="1.0.1",
     author="Lupin",
     author_email="lupin@example.com",
     description="A Model Context Protocol (MCP) server for accessing Feishu/Lark spreadsheet data",
@@ -40,6 +40,7 @@ setup(
         "fastmcp>=0.9.0",
         "pydantic>=2.0.0", 
         "python-dotenv>=1.0.0",
+        "aiohttp>=3.8.0",
     ],
     extras_require={
         "dev": [

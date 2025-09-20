@@ -1,6 +1,56 @@
 # Lark Sheet MCP Server
 
-A Model Context Protocol (MCP) server for accessing Feishu/Lark spreadsheet data.
+[![PyPI version](https://badge.fury.io/py/lark-sheet-mcp.svg)](https://badge.fury.io/py/lark-sheet-mcp)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+
+A Model Context Protocol (MCP) server for accessing Feishu/Lark spreadsheet data. Available on PyPI for easy installation and MCP integration.
+
+## Quick Start
+
+1. **Install the package**:
+   ```bash
+   pip install lark-sheet-mcp
+   ```
+
+2. **Add to your MCP configuration** (choose one method):
+
+   **Method 1: Using pipx (Recommended)**
+   ```json
+   {
+     "mcpServers": {
+       "lark-sheet-mcp": {
+         "command": "pipx",
+         "args": ["run", "lark-sheet-mcp", "--app-id", "your_app_id", "--app-secret", "your_app_secret"]
+       }
+     }
+   }
+   ```
+
+   **Method 2: Using uv**
+   ```json
+   {
+     "mcpServers": {
+       "lark-sheet-mcp": {
+         "command": "uvx", 
+         "args": ["lark-sheet-mcp", "--app-id", "your_app_id", "--app-secret", "your_app_secret"]
+       }
+     }
+   }
+   ```
+
+   **Method 3: Pre-installed**
+   ```json
+   {
+     "mcpServers": {
+       "lark-sheet-mcp": {
+         "command": "lark-sheet-mcp",
+         "args": ["--app-id", "your_app_id", "--app-secret", "your_app_secret"]
+       }
+     }
+   }
+   ```
+
+3. **Start using**: The package will be automatically installed when needed (methods 1-2) or use pre-installed version (method 3)!
 
 ## Overview
 
@@ -22,6 +72,8 @@ This MCP server provides AI assistants with the ability to read and query Feishu
 - Feishu Open Platform app credentials (app_id and app_secret)
 
 ### Install from PyPI (Recommended)
+
+The package is now available on PyPI:
 
 ```bash
 pip install lark-sheet-mcp
@@ -51,18 +103,47 @@ pip install -e ".[dev]"
 
 ### MCP Client Configuration
 
-After installation, you can use lark-sheet-mcp as an MCP server in your MCP client configuration:
+Since the package is available on PyPI, you can configure it in your MCP client. Choose the method that best fits your setup:
 
+**Option A: Auto-install with pipx (Recommended)**
 ```json
 {
   "mcpServers": {
     "lark-sheet-mcp": {
-      "command": "lark-sheet-mcp",
+      "command": "pipx",
+      "args": ["run", "lark-sheet-mcp", "--app-id", "your_app_id", "--app-secret", "your_app_secret"]
+    }
+  }
+}
+```
+
+**Option B: Auto-install with uv**
+```json
+{
+  "mcpServers": {
+    "lark-sheet-mcp": {
+      "command": "uvx",
+      "args": ["lark-sheet-mcp", "--app-id", "your_app_id", "--app-secret", "your_app_secret"]
+    }
+  }
+}
+```
+
+**Option C: Use pre-installed package**
+```json
+{
+  "mcpServers": {
+    "lark-sheet-mcp": {
+      "command": "lark-sheet-mcp", 
       "args": ["--app-id", "your_app_id", "--app-secret", "your_app_secret"]
     }
   }
 }
 ```
+
+**Note**: Replace `your_app_id` and `your_app_secret` with your actual Feishu app credentials.
+
+See `mcp-config-example.json` for a complete configuration example.
 
 ### Environment Variables
 

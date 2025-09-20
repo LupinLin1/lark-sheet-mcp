@@ -1,70 +1,48 @@
 {
-	"mcpServers": {
-		"lark_open_doc_search": {
-			"type": "stdio",
-			"command": "npx",
-			"args": [
-				"-y",
-				"@larksuiteoapi/lark-mcp",
-				"recall-developer-documents"
-			],
-			"disabled": false,
-			"autoApprove": [
-				"openplatform_developer_document_recall"
-			]
-		},
-		"fetch": {
-			"type": "stdio",
-			"command": "uvx",
-			"args": [
-				"mcp-server-fetch"
-			],
-			"env": {},
-			"disabled": false,
-			"autoApprove": [
-				"fetch"
-			]
-		},
-		"feishu-spreadsheet-fastmcp": {
-			"type": "stdio",
-			"command": "python",
-			"args": [
-				"-m",
-				"src.main"
-			],
-			"env": {
-				"FEISHU_APP_ID": "cli_a80a58f563f8500c",
-				"FEISHU_APP_SECRET": "59cn2FCWvmKZ6Y7hGyDnKeJ0xeZgU0Yh",
-				"FEISHU_LOG_LEVEL": "INFO"
-			},
-			"disabled": false,
-			"autoApprove": [
-				"list_spreadsheets",
-				"get_worksheets",
-				"read_range",
-				"read_multiple_ranges",
-				"find_cells"
-			]
-		},
-		"task-master-ai": {
-			"type": "stdio",
-			"command": "npx",
-			"args": [
-				"-y",
-				"--package=task-master-ai",
-				"task-master-ai"
-			],
-			"env": {
-				"ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY_HERE",
-				"PERPLEXITY_API_KEY": "YOUR_PERPLEXITY_API_KEY_HERE",
-				"OPENAI_API_KEY": "YOUR_OPENAI_KEY_HERE",
-				"GOOGLE_API_KEY": "YOUR_GOOGLE_KEY_HERE",
-				"XAI_API_KEY": "YOUR_XAI_KEY_HERE",
-				"OPENROUTER_API_KEY": "YOUR_OPENROUTER_KEY_HERE",
-				"MISTRAL_API_KEY": "YOUR_MISTRAL_KEY_HERE",
-				"AZURE_OPENAI_API_KEY": "YOUR_AZURE_KEY_HERE",
-				"OLLAMA_API_KEY": "YOUR_OLLAMA_API_KEY_HERE"
-			}
-		}
-	}
+  "mcpServers": {
+    "lark_open_doc_search": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@larksuiteoapi/lark-mcp", "recall-developer-documents"],
+      "disabled": false,
+      "autoApprove": ["openplatform_developer_document_recall"]
+    },
+    "lark-sheet-mcp": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "lark-sheet-mcp",
+        "--app-id",
+        "cli_a80a58f563f8500c",
+        "--app-secret",
+        "59cn2FCWvmKZ6Y7hGyDnKeJ0xeZgU0Yh",
+        "--log-level",
+        "INFO"
+      ],
+      "disabled": false,
+      "autoApprove": [
+        "list_spreadsheets",
+        "get_worksheets",
+        "read_range",
+        "read_multiple_ranges",
+        "find_cells"
+      ]
+    },
+    "task-master-ai": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "--package=task-master-ai", "task-master-ai"],
+      "env": {
+        "ANTHROPIC_API_KEY": "YOUR_ANTHROPIC_API_KEY_HERE",
+        "PERPLEXITY_API_KEY": "YOUR_PERPLEXITY_API_KEY_HERE",
+        "OPENAI_API_KEY": "YOUR_OPENAI_KEY_HERE",
+        "GOOGLE_API_KEY": "YOUR_GOOGLE_KEY_HERE",
+        "XAI_API_KEY": "YOUR_XAI_KEY_HERE",
+        "OPENROUTER_API_KEY": "YOUR_OPENROUTER_KEY_HERE",
+        "MISTRAL_API_KEY": "YOUR_MISTRAL_KEY_HERE",
+        "AZURE_OPENAI_API_KEY": "YOUR_AZURE_KEY_HERE",
+        "OLLAMA_API_KEY": "YOUR_OLLAMA_API_KEY_HERE"
+      }
+    }
+  }
 }

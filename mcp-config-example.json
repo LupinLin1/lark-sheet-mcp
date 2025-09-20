@@ -1,0 +1,30 @@
+{
+  "mcpServers": {
+    "lark-sheet-mcp": {
+      "comment": "Auto-install with pipx (recommended)",
+      "command": "pipx",
+      "args": [
+        "run", "lark-sheet-mcp",
+        "--app-id", "your_feishu_app_id",
+        "--app-secret", "your_feishu_app_secret"
+      ]
+    },
+    "lark-sheet-mcp-uv": {
+      "comment": "Alternative: Auto-install with uv",
+      "command": "uvx",
+      "args": [
+        "lark-sheet-mcp",
+        "--app-id", "your_feishu_app_id", 
+        "--app-secret", "your_feishu_app_secret"
+      ]
+    },
+    "lark-sheet-mcp-preinstalled": {
+      "comment": "Alternative: Use pre-installed package",
+      "command": "lark-sheet-mcp",
+      "args": [
+        "--app-id", "your_feishu_app_id",
+        "--app-secret", "your_feishu_app_secret"
+      ]
+    }
+  }
+}
