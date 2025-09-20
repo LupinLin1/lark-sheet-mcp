@@ -10,7 +10,7 @@ from unittest.mock import patch
 
 import pytest
 
-from feishu_spreadsheet_mcp.config import ConfigurationManager, ServerConfig
+from src.config import ConfigurationManager, ServerConfig
 
 
 class TestServerConfig:

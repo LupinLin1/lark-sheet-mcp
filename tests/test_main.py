@@ -7,7 +7,7 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from feishu_spreadsheet_mcp.main import main, main_async
+from src.main import main, main_async
 
 
 class TestMainAsync:
@@ -16,21 +16,21 @@ class TestMainAsync:
     @pytest.mark.asyncio
     async def test_main_async_with_params(self):
         """Test main_async with provided parameters."""
-        with patch("feishu_spreadsheet_mcp.main.run_server") as mock_run_server:
+        with patch("src.main.run_server") as mock_run_server:
             await main_async("test_app_id", "test_app_secret")
             mock_run_server.assert_called_once_with("test_app_id", "test_app_secret", None)
 
     @pytest.mark.asyncio
     async def test_main_async_with_config_file(self):
         """Test main_async with config file."""
-        with patch("feishu_spreadsheet_mcp.main.run_server") as mock_run_server:
+        with patch("src.main.run_server") as mock_run_server:
             await main_async(config_file="test_config.json")
             mock_run_server.assert_called_once_with(None, None, "test_config.json")
 
     @pytest.mark.asyncio
     async def test_main_async_invalid_config(self):
         """Test main_async with invalid configuration."""
-        with patch("feishu_spreadsheet_mcp.main.config_manager") as mock_config_manager:
+        with patch("src.main.config_manager") as mock_config_manager:
             mock_config_manager.load_config.return_value = MagicMock()
             mock_config_manager.validate_config.return_value = False
             
@@ -40,7 +40,7 @@ class TestMainAsync:
     @pytest.mark.asyncio 
     async def test_main_async_config_error(self):
         """Test main_async with configuration loading error."""
-        with patch("feishu_spreadsheet_mcp.main.config_manager") as mock_config_manager:
+        with patch("src.main.config_manager") as mock_config_manager:
             mock_config_manager.load_config.side_effect = ValueError("Missing app_id")
             
             with pytest.raises(ValueError):
@@ -54,8 +54,8 @@ class TestMain:
         """Test that main function exists."""
         assert callable(main)
 
-    @patch("feishu_spreadsheet_mcp.main.run_server")
-    @patch("feishu_spreadsheet_mcp.main.argparse.ArgumentParser")
+    @patch("src.main.run_server")
+    @patch("src.main.argparse.ArgumentParser")
     def test_main_with_args(self, mock_parser, mock_run_server):
         """Test main function with command line arguments."""
         # Mock argument parser
@@ -70,8 +70,8 @@ class TestMain:
 
         mock_run_server.assert_called_once_with("cli_app_id", "cli_app_secret", None)
 
-    @patch("feishu_spreadsheet_mcp.main.run_server")
-    @patch("feishu_spreadsheet_mcp.main.argparse.ArgumentParser")
+    @patch("src.main.run_server")
+    @patch("src.main.argparse.ArgumentParser")
     def test_main_no_args(self, mock_parser, mock_run_server):
         """Test main function without command line arguments."""
         # Mock argument parser with no args
@@ -86,9 +86,9 @@ class TestMain:
 
         mock_run_server.assert_called_once_with(None, None, None)
 
-    @patch("feishu_spreadsheet_mcp.main.sys.exit")
-    @patch("feishu_spreadsheet_mcp.main.config_manager")
-    @patch("feishu_spreadsheet_mcp.main.argparse.ArgumentParser")
+    @patch("src.main.sys.exit")
+    @patch("src.main.config_manager")
+    @patch("src.main.argparse.ArgumentParser")
     def test_main_create_config(self, mock_parser, mock_config_manager, mock_exit):
         """Test main function with create-config option."""
         mock_args = mock_parser.return_value.parse_args.return_value
@@ -107,9 +107,9 @@ class TestMain:
         mock_config_manager.create_sample_config.assert_called_once_with("test_config.json")
         mock_exit.assert_called_once_with(0)
 
-    @patch("feishu_spreadsheet_mcp.main.sys.exit")
-    @patch("feishu_spreadsheet_mcp.main.run_server")
-    @patch("feishu_spreadsheet_mcp.main.argparse.ArgumentParser")
+    @patch("src.main.sys.exit")
+    @patch("src.main.run_server")
+    @patch("src.main.argparse.ArgumentParser")
     def test_main_config_error(self, mock_parser, mock_run_server, mock_exit):
         """Test main function with configuration error."""
         mock_args = mock_parser.return_value.parse_args.return_value
@@ -126,9 +126,9 @@ class TestMain:
 
         mock_exit.assert_called_once_with(1)
 
-    @patch("feishu_spreadsheet_mcp.main.sys.exit")
-    @patch("feishu_spreadsheet_mcp.main.run_server")
-    @patch("feishu_spreadsheet_mcp.main.argparse.ArgumentParser")
+    @patch("src.main.sys.exit")
+    @patch("src.main.run_server")
+    @patch("src.main.argparse.ArgumentParser")
     def test_main_keyboard_interrupt(self, mock_parser, mock_run_server, mock_exit):
         """Test main function with keyboard interrupt."""
         mock_args = mock_parser.return_value.parse_args.return_value

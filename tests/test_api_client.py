@@ -10,10 +10,10 @@ from unittest.mock import AsyncMock, Mock, patch
 import aiohttp
 import pytest
 
-from feishu_spreadsheet_mcp.models.data_models import FeishuAPIError
-from feishu_spreadsheet_mcp.models.error_handling import RetryStrategy, RetryConfig
-from feishu_spreadsheet_mcp.services import AuthenticationManager, FeishuAPIClient
-from feishu_spreadsheet_mcp.services.api_client import RateLimiter
+from src.models.data_models import FeishuAPIError
+from src.models.error_handling import RetryStrategy, RetryConfig
+from src.services import AuthenticationManager, FeishuAPIClient
+from src.services.api_client import RateLimiter
 
 
 class TestFeishuAPIClient:

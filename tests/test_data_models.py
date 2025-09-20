@@ -5,7 +5,7 @@ Tests for data models.
 import pytest
 from datetime import datetime
 
-from feishu_spreadsheet_mcp.models import (
+from src.models import (
     FeishuAPIError,
     FindResult,
     MCPToolResult,
@@ -775,7 +775,7 @@ class TestFeishuAPIError:
 
     def test_feishu_api_error_get_error_category(self):
         """Test FeishuAPIError get_error_category method."""
-        from feishu_spreadsheet_mcp.models.error_handling import ErrorCategory
+        from src.models.error_handling import ErrorCategory
 
         permission_error = FeishuAPIError(code=1310213, message="Permission denied", http_status=403)
         assert permission_error.get_error_category() == ErrorCategory.PERMISSION

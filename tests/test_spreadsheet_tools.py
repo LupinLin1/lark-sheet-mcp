@@ -7,8 +7,8 @@ from unittest.mock import AsyncMock, Mock
 
 import pytest
 
-from feishu_spreadsheet_mcp.models.data_models import FeishuAPIError, SpreadsheetInfo, WorksheetInfo, RangeData, FindResult
-from feishu_spreadsheet_mcp.tools import (
+from src.models.data_models import FeishuAPIError, SpreadsheetInfo, WorksheetInfo, RangeData, FindResult
+from src.tools import (
     find_cells,
     get_worksheets,
     list_spreadsheets,

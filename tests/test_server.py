@@ -5,8 +5,8 @@ Tests for FastMCP server.
 import pytest
 from unittest.mock import AsyncMock, patch
 
-from feishu_spreadsheet_mcp.server import FeishuSpreadsheetMCPServer
-from feishu_spreadsheet_mcp.services import AuthenticationManager, FeishuAPIClient
+from src.server import FeishuSpreadsheetMCPServer
+from src.services import AuthenticationManager, FeishuAPIClient
 
 
 class TestFeishuSpreadsheetMCPServer:
@@ -44,7 +44,7 @@ class TestFeishuSpreadsheetMCPServer:
 
     def test_pydantic_models(self):
         """Test that Pydantic models are properly defined."""
-        from feishu_spreadsheet_mcp.server import (
+        from src.server import (
             ListSpreadsheetsArgs,
             GetWorksheetsArgs,
             ReadRangeArgs,
@@ -101,7 +101,7 @@ class TestFeishuSpreadsheetMCPServer:
         server = FeishuSpreadsheetMCPServer("test_app_id", "test_app_secret")
         
         # Mock spreadsheet_tools functions
-        with patch('feishu_spreadsheet_mcp.tools.spreadsheet_tools.list_spreadsheets') as mock_list:
+        with patch('src.tools.spreadsheet_tools.list_spreadsheets') as mock_list:
             mock_list.return_value = {"spreadsheets": []}
             
             # Access the registered tool directly from the FastMCP server
@@ -164,7 +164,7 @@ class TestPydanticModels:
 
     def test_list_spreadsheets_args_validation(self):
         """Test ListSpreadsheetsArgs validation."""
-        from feishu_spreadsheet_mcp.server import ListSpreadsheetsArgs
+        from src.server import ListSpreadsheetsArgs
         from pydantic import ValidationError
         
         # Valid cases
@@ -183,7 +183,7 @@ class TestPydanticModels:
 
     def test_get_worksheets_args_validation(self):
         """Test GetWorksheetsArgs validation."""
-        from feishu_spreadsheet_mcp.server import GetWorksheetsArgs
+        from src.server import GetWorksheetsArgs
         from pydantic import ValidationError
         
         # Valid case
@@ -196,7 +196,7 @@ class TestPydanticModels:
 
     def test_read_range_args_validation(self):
         """Test ReadRangeArgs validation."""
-        from feishu_spreadsheet_mcp.server import ReadRangeArgs
+        from src.server import ReadRangeArgs
         from pydantic import ValidationError
         
         # Valid case
@@ -213,7 +213,7 @@ class TestPydanticModels:
 
     def test_find_cells_args_validation(self):
         """Test FindCellsArgs validation."""
-        from feishu_spreadsheet_mcp.server import FindCellsArgs
+        from src.server import FindCellsArgs
         from pydantic import ValidationError
         
         # Valid case

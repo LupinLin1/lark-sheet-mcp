@@ -4,7 +4,7 @@ Tests for error handling module.
 
 from unittest.mock import patch
 
-from feishu_spreadsheet_mcp.models.error_handling import (
+from src.models.error_handling import (
     ErrorCategory,
     ErrorCodeMapping,
     RetryConfig,

@@ -4,7 +4,7 @@
       "command": "python",
       "args": [
         "-m",
-        "feishu_spreadsheet_mcp.main"
+        "src.main"
       ],
       "env": {
         "FEISHU_APP_ID": "your_app_id_here",
@@ -24,7 +24,7 @@
       "command": "python",
       "args": [
         "-m",
-        "feishu_spreadsheet_mcp.main",
+        "src.main",
         "--log-level",
         "DEBUG"
       ],
@@ -40,7 +40,7 @@
       "command": "python",
       "args": [
         "-m",
-        "feishu_spreadsheet_mcp.main",
+        "src.main",
         "--config",
         "/path/to/your/config.json"
       ],

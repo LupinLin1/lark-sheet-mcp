@@ -1,4 +1,4 @@
-# Feishu Spreadsheet MCP Server
+# Lark Sheet MCP Server
 
 A Model Context Protocol (MCP) server for accessing Feishu/Lark spreadsheet data.
 
@@ -49,7 +49,7 @@ export FEISHU_APP_SECRET="your_app_secret"
 Or pass them as command line arguments:
 
 ```bash
-feishu-spreadsheet-mcp --app-id your_app_id --app-secret your_app_secret
+lark-sheet-mcp --app-id your_app_id --app-secret your_app_secret
 ```
 
 ## Usage
@@ -58,16 +58,16 @@ feishu-spreadsheet-mcp --app-id your_app_id --app-secret your_app_secret
 
 ```bash
 # Using environment variables
-feishu-spreadsheet-mcp
+lark-sheet-mcp
 
 # Using command line arguments
-feishu-spreadsheet-mcp --app-id your_app_id --app-secret your_app_secret
+lark-sheet-mcp --app-id your_app_id --app-secret your_app_secret
 
 # With custom log level
-feishu-spreadsheet-mcp --log-level DEBUG
+lark-sheet-mcp --log-level DEBUG
 
 # Generate sample configuration file
-feishu-spreadsheet-mcp --create-config config.json
+lark-sheet-mcp --create-config config.json
 ```
 
 ### Configuration Options
@@ -277,7 +277,7 @@ Common error codes:
 Enable debug logging to see detailed request/response information:
 
 ```bash
-feishu-spreadsheet-mcp --log-level DEBUG
+lark-sheet-mcp --log-level DEBUG
 ```
 
 Or set environment variable:

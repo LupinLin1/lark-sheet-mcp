@@ -10,15 +10,16 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="feishu-spreadsheet-mcp",
+    name="lark-sheet-mcp",
     version="1.0.0",
-    author="MCP Development Team",
-    author_email="dev@example.com",
+    author="Lupin",
+    author_email="lupin@example.com",
     description="A Model Context Protocol (MCP) server for accessing Feishu/Lark spreadsheet data",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/example/feishu-spreadsheet-mcp",
-    packages=find_packages(exclude=["tests", "tests.*"]),
+    url="https://github.com/lupin/lark-sheet-mcp",
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
@@ -55,14 +56,14 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "feishu-spreadsheet-mcp=feishu_spreadsheet_mcp.main:main",
+            "lark-sheet-mcp=main:main",
         ],
     },
     keywords="feishu lark spreadsheet mcp model-context-protocol api",
     project_urls={
-        "Bug Reports": "https://github.com/example/feishu-spreadsheet-mcp/issues",
-        "Source": "https://github.com/example/feishu-spreadsheet-mcp",
-        "Documentation": "https://github.com/example/feishu-spreadsheet-mcp#readme",
+        "Bug Reports": "https://github.com/lupin/lark-sheet-mcp/issues",
+        "Source": "https://github.com/lupin/lark-sheet-mcp",
+        "Documentation": "https://github.com/lupin/lark-sheet-mcp#readme",
     },
     include_package_data=True,
     zip_safe=False,

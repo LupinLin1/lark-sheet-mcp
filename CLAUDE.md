@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 pytest
 
 # Run tests with coverage report
-pytest --cov=feishu_spreadsheet_mcp --cov-report=html
+pytest --cov=src --cov-report=html
 
 # Run specific test file
 pytest tests/test_data_models.py
@@ -19,16 +19,16 @@ pytest tests/test_data_models.py
 ### Code Quality
 ```bash
 # Format code with Black
-black feishu_spreadsheet_mcp tests
+black src tests
 
 # Sort imports with isort
-isort feishu_spreadsheet_mcp tests
+isort src tests
 
 # Lint with flake8
-flake8 feishu_spreadsheet_mcp tests
+flake8 src tests
 
 # Type checking with mypy
-mypy feishu_spreadsheet_mcp
+mypy src
 ```
 
 ### Installation and Setup
@@ -89,3 +89,7 @@ The server requires Feishu app credentials:
 - **isort**: Black-compatible profile
 - **mypy**: Strict type checking enabled
 - **pytest**: Auto coverage with HTML reports
+
+## Task Master AI Instructions
+**Import Task Master's development workflow commands and guidelines, treat as if import is in the main CLAUDE.md file.**
+@./.taskmaster/CLAUDE.md

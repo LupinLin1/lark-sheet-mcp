@@ -9,12 +9,12 @@ from unittest.mock import AsyncMock, patch
 import aiohttp
 import pytest
 
-from feishu_spreadsheet_mcp.models.data_models import FeishuAPIError
-from feishu_spreadsheet_mcp.models.error_handling import (
+from src.models.data_models import FeishuAPIError
+from src.models.error_handling import (
     AuthenticationError,
     RetryConfig,
 )
-from feishu_spreadsheet_mcp.services import AuthenticationManager
+from src.services import AuthenticationManager
 
 
 class TestAuthenticationManager:
